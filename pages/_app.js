@@ -11,7 +11,7 @@ function MyApp({ Component, pageProps }) {
   const [balance,setBalance]  = useState()
   const bundlrRef = useRef()
 
-  async function initialize() {
+  async function initialize() {                                                                 
 
     await window.ethereum.enable()
     const provider = new providers.Web3Provider(window.ethereum)
@@ -38,16 +38,12 @@ function MyApp({ Component, pageProps }) {
     bundlrInstance
 
   }}>
-    <div style={conainerStyle}>
+    <div    >
    <Component {...pageProps} />
   </div>
   </MainContext.Provider> 
 } 
 
-const conainerStyle = {
-  width: "900px",
-  margin: "0 auto",
-  padding:"40px"
-}
+
 
 export default MyApp
