@@ -25,7 +25,9 @@ export default function Home() {
   } = useContext(MainContext)
 
   async function initializeBundlr() {
-    if(!window.ethereum) return toast("please install metamask")
+    console.log(window.ethereum)
+    if (!window.ethereum) return toast("please install metamask")
+    if(window.ethereum.networkVersion !== 80001) return toast("only polygon testnet supported")
     initialize()
     
   }
@@ -53,6 +55,7 @@ export default function Home() {
   }
 
   async function uploadFile() {
+    if(balance <= 0) return toast("please provide enough fund to handle upload")
     if (!file) return toast("please select a file to upload")
     setIsUpload(true)
     let tx = await bundlrInstance.uploader.upload(file, [{ name: "Content-Type", value: "image/png" }])
